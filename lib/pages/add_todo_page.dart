@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddTodoPage extends StatelessWidget {
   AddTodoPage({super.key});
@@ -9,7 +10,7 @@ class AddTodoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add todo"),
+        title: Text(AppLocalizations.of(context)!.addTodo),
         actions: [
           IconButton(
             onPressed: () => _save(context),
