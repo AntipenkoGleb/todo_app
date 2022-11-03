@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../generated/l10n.dart';
 
 class TodoDetailsPage extends StatefulWidget {
   const TodoDetailsPage({super.key});
@@ -21,7 +22,7 @@ class _TodoDetailsPageState extends State<TodoDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.todoDetails),
+        title: Text(S.of(context).todoDetails),
         actions: [
           IconButton(
             onPressed: _save,

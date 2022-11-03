@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 
+import '../generated/l10n.dart';
 import '../main.dart';
 import 'add_todo_page.dart';
 import 'todo_details.dart';
@@ -17,7 +18,7 @@ class _TodoListPageState extends State<TodoListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.todoList),
+        title: Text(S.of(context).todoList),
       ),
       body: ListView.builder(
         itemCount: todoes.length,
@@ -74,7 +75,12 @@ class _TodoListPageState extends State<TodoListPage> {
 
   void _delete(int index) {
     setState(() {
-      todoes.removeAt(index);
+      final result = todoes.removeAt(index);
+      var snackBar = SnackBar(
+        content: Text(S.of(context).todoDeleted(result)),
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
   }
 }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'generated/l10n.dart';
 import 'pages/todo_list_page.dart';
 
 final todoes = [
@@ -10,7 +9,7 @@ final todoes = [
   "Watch films",
 ];
 
-void main() {
+void main() async {
   runApp(const TodoApp());
 }
 
@@ -19,16 +18,16 @@ class TodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: "Todo app",
-      localizationsDelegates: [
-        AppLocalizations.delegate,
+    return MaterialApp(
+      onGenerateTitle: (context) => S.of(context).applicationTitle,
+      localizationsDelegates: const [
+        S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: TodoListPage(),
+      supportedLocales: S.delegate.supportedLocales,
+      home: const TodoListPage(),
     );
   }
 }

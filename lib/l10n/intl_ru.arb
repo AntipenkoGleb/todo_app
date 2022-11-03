@@ -1,0 +1,7 @@
+{
+    "applicationTitle": "Список задач",
+    "todoList": "Список задач",
+    "addTodo": "Добавить задачу",
+    "todoDetails": "Просмотр задачи",
+    "todoDeleted": "Заметка {title} удалена"
+}

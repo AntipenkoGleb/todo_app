@@ -1,0 +1,7 @@
+{
+    "applicationTitle": "Todo list",
+    "todoList": "Todo list",
+    "addTodo": "Add todo",
+    "todoDetails": "Todo details",
+    "todoDeleted": "Todo {title} deleted"
+}
