@@ -63,7 +63,7 @@ class _TodoListPageState extends State<TodoListPage> {
     final result = await Navigator.pushNamed(
       context,
       TodoDetailsPage.routeName,
-      arguments: todoes[index],
+      arguments: index,
     );
 
     if (!mounted || result == null) return;

@@ -29,10 +29,20 @@ class TodoApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
+      onGenerateRoute: (settings) {
+        if (settings.name == TodoDetailsPage.routeName) {
+          final id = settings.arguments as int;
+
+          return MaterialPageRoute(
+            builder: (context) => TodoDetailsPage(id: id),
+          );
+        }
+
+        return null;
+      },
       routes: {
         TodoListPage.routeName: (context) => const TodoListPage(),
         AddTodoPage.routeName: (context) => AddTodoPage(),
-        TodoDetailsPage.routeName: (context) => const TodoDetailsPage(),
       },
     );
   }

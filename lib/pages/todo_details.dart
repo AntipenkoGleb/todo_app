@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/main.dart';
 
 import '../generated/l10n.dart';
 
 class TodoDetailsPage extends StatefulWidget {
-  const TodoDetailsPage({super.key});
+  const TodoDetailsPage({super.key, required this.id});
+
+  final int id;
 
   static const String routeName = '/details';
 
@@ -17,7 +20,7 @@ class _TodoDetailsPageState extends State<TodoDetailsPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _controller.text = ModalRoute.of(context)!.settings.arguments.toString();
+    _controller.text = todoes[widget.id];
   }
 
   @override
