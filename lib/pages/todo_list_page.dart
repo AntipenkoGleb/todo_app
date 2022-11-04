@@ -9,6 +9,8 @@ import 'todo_details.dart';
 class TodoListPage extends StatefulWidget {
   const TodoListPage({super.key});
 
+  static const String routeName = '/';
+
   @override
   State<TodoListPage> createState() => _TodoListPageState();
 }
@@ -45,31 +47,29 @@ class _TodoListPageState extends State<TodoListPage> {
   }
 
   void _add() async {
-    final result = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => AddTodoPage(),
-      ),
+    final result = await Navigator.pushNamed(
+      context,
+      AddTodoPage.routeName,
     );
 
-    if (!mounted) return;
+    if (!mounted || result == null) return;
 
     setState(() {
-      todoes.add(result);
+      todoes.add(result.toString());
     });
   }
 
   void _details(int index) async {
-    final result = await Navigator.of(context).push(
-      MaterialPageRoute(
-        settings: RouteSettings(arguments: todoes[index]),
-        builder: (context) => const TodoDetailsPage(),
-      ),
+    final result = await Navigator.pushNamed(
+      context,
+      TodoDetailsPage.routeName,
+      arguments: todoes[index],
     );
 
-    if (!mounted) return;
+    if (!mounted || result == null) return;
 
     setState(() {
-      todoes[index] = result;
+      todoes[index] = result.toString();
     });
   }
 

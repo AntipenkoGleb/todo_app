@@ -5,6 +5,8 @@ import '../generated/l10n.dart';
 class AddTodoPage extends StatelessWidget {
   AddTodoPage({super.key});
 
+  static const String routeName = '/add';
+
   final _controller = TextEditingController();
 
   @override

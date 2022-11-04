@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:todo_app/pages/add_todo_page.dart';
+import 'package:todo_app/pages/todo_details.dart';
 
 import 'generated/l10n.dart';
 import 'pages/todo_list_page.dart';
@@ -27,7 +29,11 @@ class TodoApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      home: const TodoListPage(),
+      routes: {
+        TodoListPage.routeName: (context) => const TodoListPage(),
+        AddTodoPage.routeName: (context) => AddTodoPage(),
+        TodoDetailsPage.routeName: (context) => const TodoDetailsPage(),
+      },
     );
   }
 }

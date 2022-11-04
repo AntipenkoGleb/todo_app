@@ -5,6 +5,8 @@ import '../generated/l10n.dart';
 class TodoDetailsPage extends StatefulWidget {
   const TodoDetailsPage({super.key});
 
+  static const String routeName = '/details';
+
   @override
   State<TodoDetailsPage> createState() => _TodoDetailsPageState();
 }
