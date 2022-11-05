@@ -18,6 +18,7 @@ class TodoListPage extends StatefulWidget {
 class _TodoListPageState extends State<TodoListPage> {
   @override
   Widget build(BuildContext context) {
+    final todoes = TodoContainer.of(context).todoes;
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).todoList),
@@ -55,7 +56,7 @@ class _TodoListPageState extends State<TodoListPage> {
     if (!mounted || result == null) return;
 
     setState(() {
-      todoes.add(result.toString());
+      TodoContainer.of(context).todoes.add(result.toString());
     });
   }
 
@@ -69,13 +70,13 @@ class _TodoListPageState extends State<TodoListPage> {
     if (!mounted || result == null) return;
 
     setState(() {
-      todoes[index] = result.toString();
+      TodoContainer.of(context).todoes[index] = result.toString();
     });
   }
 
   void _delete(int index) {
     setState(() {
-      final result = todoes.removeAt(index);
+      final result = TodoContainer.of(context).todoes.removeAt(index);
       var snackBar = SnackBar(
         content: Text(S.of(context).todoDeleted(result)),
       );
