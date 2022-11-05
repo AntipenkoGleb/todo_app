@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
+import '../main.dart';
 
-class AddTodoPage extends StatelessWidget {
-  AddTodoPage({super.key});
+class AddTodoPage extends StatefulWidget {
+  const AddTodoPage({super.key});
 
   static const String routeName = '/add';
 
+  @override
+  State<AddTodoPage> createState() => _AddTodoPageState();
+}
+
+class _AddTodoPageState extends State<AddTodoPage> {
   final _controller = TextEditingController();
 
   @override
@@ -33,6 +40,13 @@ class AddTodoPage extends StatelessWidget {
   }
 
   void _save(BuildContext context) {
-    Navigator.of(context).pop(_controller.text);
+    context.read<TodoContainer>().add(_controller.text);
+    Navigator.of(context).pop();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
