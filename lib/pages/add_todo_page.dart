@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
@@ -41,7 +42,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
 
   void _save(BuildContext context) {
     context.read<TodoContainer>().add(_controller.text);
-    Navigator.of(context).pop();
+    context.pop();
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/pages/add_todo_page.dart';
 import 'package:todo_app/pages/todo_details.dart';
@@ -13,17 +14,17 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => TodoContainer()),
       ],
-      child: const TodoApp(),
+      child: TodoApp(),
     ),
   );
 }
 
 class TodoApp extends StatelessWidget {
-  const TodoApp({super.key});
+  TodoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       onGenerateTitle: (context) => S.of(context).applicationTitle,
       localizationsDelegates: const [
         S.delegate,
@@ -32,23 +33,30 @@ class TodoApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      onGenerateRoute: (settings) {
-        if (settings.name == TodoDetailsPage.routeName) {
-          final id = settings.arguments as int;
-
-          return MaterialPageRoute(
-            builder: (context) => TodoDetailsPage(id: id),
-          );
-        }
-
-        return null;
-      },
-      routes: {
-        TodoListPage.routeName: (context) => const TodoListPage(),
-        AddTodoPage.routeName: (context) => const AddTodoPage(),
-      },
+      routerConfig: _routes,
     );
   }
+
+  final _routes = GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const TodoListPage(),
+        routes: [
+          GoRoute(
+            path: 'add',
+            builder: (context, state) => const AddTodoPage(),
+          ),
+          GoRoute(
+            path: 'details/:id',
+            builder: (context, state) => TodoDetailsPage(
+              id: int.parse(state.params['id'].toString()),
+            ),
+          ),
+        ],
+      )
+    ],
+  );
 }
 
 class TodoContainer extends ChangeNotifier {

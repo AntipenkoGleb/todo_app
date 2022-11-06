@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
@@ -43,18 +44,11 @@ class TodoListPage extends StatelessWidget {
   }
 
   void _add(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      AddTodoPage.routeName,
-    );
+    context.go(AddTodoPage.routeName);
   }
 
   void _details(BuildContext context, int index) {
-    Navigator.pushNamed(
-      context,
-      TodoDetailsPage.routeName,
-      arguments: index,
-    );
+    context.go('${TodoDetailsPage.routeName}/$index');
   }
 
   void _delete(BuildContext context, int index) {

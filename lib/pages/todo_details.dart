@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/main.dart';
 
@@ -50,7 +51,7 @@ class _TodoDetailsPageState extends State<TodoDetailsPage> {
 
   void _save(BuildContext context) {
     context.read<TodoContainer>().update(widget.id, _controller.text);
-    Navigator.of(context).pop();
+    context.pop();
   }
 
   @override
